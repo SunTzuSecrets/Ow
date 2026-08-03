@@ -1,11 +1,11 @@
 export function calculateMatchPoints(playerAVictoryPoints: number, playerBVictoryPoints: number) {
   const difference = Math.abs(playerAVictoryPoints - playerBVictoryPoints);
 
-  if (difference <= 450) {
+  if (difference <= 300) {
     return { playerA: 3, playerB: 3 };
   }
 
-  if (difference <= 950) {
+  if (difference <= 750) {
     return playerAVictoryPoints > playerBVictoryPoints
       ? { playerA: 4, playerB: 2 }
       : { playerA: 2, playerB: 4 };

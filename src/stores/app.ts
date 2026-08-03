@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { api } from '@/services/api';
-import type { AppConfig, Army, FactionDefinition, MatchSummary, RegisterPayload, Territory, UpdateProfilePayload, UserProfile } from '@/types';
+import type { AppConfig, Army, DashboardSummary, FactionDefinition, MatchSummary, RegisterPayload, Territory, UpdateProfilePayload, UserProfile } from '@/types';
 
 interface AppState {
   config: AppConfig | null;
@@ -9,6 +9,7 @@ interface AppState {
   factions: FactionDefinition[];
   territories: Territory[];
   recentMatches: MatchSummary[];
+  dashboardSummary: DashboardSummary | null;
   isLoading: boolean;
   hasBootstrapped: boolean;
   bootstrapErrors: string[];
@@ -24,6 +25,7 @@ export const useAppStore = defineStore('app', {
     factions: [],
     territories: [],
     recentMatches: [],
+    dashboardSummary: null,
     isLoading: false,
     hasBootstrapped: false,
     bootstrapErrors: [],
@@ -48,10 +50,11 @@ export const useAppStore = defineStore('app', {
           api.getArmies(),
           api.getFactions(),
           api.getTerritories(),
+          api.getDashboardSummary(),
           api.getRecentMatches(),
         ]);
 
-        const [configResult, userResult, armiesResult, factionsResult, territoriesResult, recentMatchesResult] = results;
+        const [configResult, userResult, armiesResult, factionsResult, territoriesResult, dashboardSummaryResult, recentMatchesResult] = results;
 
         if (configResult.status === 'fulfilled') {
           this.config = configResult.value;
@@ -85,6 +88,13 @@ export const useAppStore = defineStore('app', {
         } else {
           this.territories = [];
           this.bootstrapErrors.push('territories');
+        }
+
+        if (dashboardSummaryResult.status === 'fulfilled') {
+          this.dashboardSummary = dashboardSummaryResult.value;
+        } else {
+          this.dashboardSummary = null;
+          this.bootstrapErrors.push('dashboard-summary');
         }
 
         if (recentMatchesResult.status === 'fulfilled') {
@@ -152,6 +162,7 @@ export const useAppStore = defineStore('app', {
         this.factions = [];
         this.territories = [];
         this.recentMatches = [];
+        this.dashboardSummary = null;
         this.hasBootstrapped = false;
         this.bootstrapErrors = [];
         this.isLoading = false;

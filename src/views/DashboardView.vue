@@ -63,7 +63,7 @@ import { useTheme } from '@/composables/useTheme';
 import { useAppStore } from '@/stores/app';
 
 const appStore = useAppStore();
-const { recentMatches, territories } = storeToRefs(appStore);
+const { dashboardSummary, recentMatches, territories } = storeToRefs(appStore);
 const { factionColor, factionLabel } = useTheme();
 const factionOrder: Faction[] = ['FORCES_OF_FANTASY', 'RAVAGING_HORDES', 'UNDEAD'];
 
@@ -71,7 +71,7 @@ const confirmedRecentMatches = computed(() =>
   recentMatches.value.filter((match) => match.status === 'CONFIRMED'),
 );
 
-const confirmedBattles = computed(() => confirmedRecentMatches.value.length);
+const confirmedBattles = computed(() => dashboardSummary.value?.confirmedBattles ?? 0);
 
 const factionPointTotals = computed(() => {
   const totals = new Map<Faction, number>(

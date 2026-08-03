@@ -170,6 +170,10 @@ export interface AppConfig {
   campaignMapAvailable: boolean;
 }
 
+export interface DashboardSummary {
+  confirmedBattles: number;
+}
+
 export interface RegisterPayload {
   nickname: string;
   email: string;

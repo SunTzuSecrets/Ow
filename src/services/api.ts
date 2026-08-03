@@ -1,4 +1,4 @@
-import type { AdminMatchRecord, AdminUserRecord, AppConfig, Army, AuthResult, CreateTerritoryPayload, FactionDefinition, MatchSummary, MeResult, PendingMatchSuggestion, PendingOwnMatch, RegisterPayload, SubmitResultPayload, Territory, TerritoryMapPayload, UpdateProfilePayload, UserLookup, UserProfile } from '@/types';
+import type { AdminMatchRecord, AdminUserRecord, AppConfig, Army, AuthResult, CreateTerritoryPayload, DashboardSummary, FactionDefinition, MatchSummary, MeResult, PendingMatchSuggestion, PendingOwnMatch, RegisterPayload, SubmitResultPayload, Territory, TerritoryMapPayload, UpdateProfilePayload, UserLookup, UserProfile } from '@/types';
 
 const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const apiBaseUrls = configuredApiBaseUrl
@@ -74,6 +74,9 @@ export const api = {
   },
   async getTerritories(): Promise<Territory[]> {
     return request<Territory[]>('/territories');
+  },
+  async getDashboardSummary(): Promise<DashboardSummary> {
+    return request<DashboardSummary>('/dashboard-summary');
   },
   async createAdminTerritory(payload: CreateTerritoryPayload): Promise<{ message: string; territory: Territory }> {
     return request<{ message: string; territory: Territory }>('/admin/territories', {

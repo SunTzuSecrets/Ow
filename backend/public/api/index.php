@@ -1340,6 +1340,20 @@ if ($method === 'GET' && $path === '/matches/recent') {
     jsonResponse($matches);
 }
 
+if ($method === 'GET' && $path === '/dashboard-summary') {
+    $stmt = $pdo->query("
+        SELECT COUNT(*) AS confirmedBattles
+        FROM matches
+        WHERE status = 'CONFIRMED'
+    ");
+
+    $summary = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+
+    jsonResponse([
+        'confirmedBattles' => (int) ($summary['confirmedBattles'] ?? 0),
+    ]);
+}
+
 if ($method === 'GET' && $path === '/matches/pending-for-me') {
     if (! isset($_SESSION['user_id'])) {
         jsonResponse(['error' => 'Autenticazione richiesta.'], 401);
@@ -2484,11 +2498,11 @@ function calculateMatchPoints(int $playerAVictoryPoints, int $playerBVictoryPoin
 {
     $difference = abs($playerAVictoryPoints - $playerBVictoryPoints);
 
-    if ($difference <= 450) {
+    if ($difference <= 300) {
         return ['playerA' => 3, 'playerB' => 3];
     }
 
-    if ($difference <= 950) {
+    if ($difference <= 750) {
         return $playerAVictoryPoints > $playerBVictoryPoints
             ? ['playerA' => 4, 'playerB' => 2]
             : ['playerA' => 2, 'playerB' => 4];

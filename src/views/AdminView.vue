@@ -470,6 +470,24 @@ async function saveMatch(entry: AdminMatchRecord) {
       matchPointsB: recalculated.playerB,
     };
   }
+
+  const [territoriesResult, dashboardSummaryResult, recentMatchesResult] = await Promise.allSettled([
+    api.getTerritories(),
+    api.getDashboardSummary(),
+    api.getRecentMatches(),
+  ]);
+
+  if (territoriesResult.status === 'fulfilled') {
+    appStore.territories = territoriesResult.value;
+  }
+
+  if (dashboardSummaryResult.status === 'fulfilled') {
+    appStore.dashboardSummary = dashboardSummaryResult.value;
+  }
+
+  if (recentMatchesResult.status === 'fulfilled') {
+    appStore.recentMatches = recentMatchesResult.value;
+  }
 }
 
 function handleManualFileChange(event: Event) {
