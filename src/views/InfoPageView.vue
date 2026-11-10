@@ -1,7 +1,7 @@
 <template>
   <div class="page-stack">
     <SectionHeader
-      eyebrow="Informazioni"
+      :eyebrow="t('info.eyebrow')"
       :title="pageTitle"
       :description="pageIntro"
     />
@@ -17,7 +17,7 @@
       </div>
 
       <button class="secondary-button info-page-back" type="button" @click="handleBack">
-        Back
+        {{ t('info.back') }}
       </button>
     </section>
   </div>
@@ -27,11 +27,12 @@
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import SectionHeader from '@/components/SectionHeader.vue';
+import { locale, t } from '@/i18n';
 
 const route = useRoute();
 const router = useRouter();
 
-const pages = {
+const pagesIt = {
   legal: {
     title: 'Note legali',
     intro: 'Informazioni sintetiche su titolarita, utilizzo del portale e limiti dei contenuti pubblicati.',
@@ -142,8 +143,122 @@ const pages = {
   },
 } as const;
 
-const pageKey = computed(() => String(route.name ?? '').replace('info-', '') as keyof typeof pages);
-const page = computed(() => pages[pageKey.value] ?? pages.legal);
+const pagesEn = {
+  legal: {
+    title: 'Legal notice',
+    intro: 'A short summary of who runs the portal, how it may be used and the limits of the content published here.',
+    sections: [
+      {
+        title: 'Portal owner',
+        paragraphs: [
+          'Sun-Tzu Secrets Play Portal is an information and management platform for running the campaign and the activities of the gaming community.',
+          'The official details of the owner and of the people responsible for the project will be published in this section, together with their full identifying information.',
+        ],
+      },
+      {
+        title: 'Use of content',
+        paragraphs: [
+          'Texts, graphics, organisational material and other content published on the portal are intended for registered users and authorised visitors.',
+          'Reusing, copying or distributing the portal content for unauthorised purposes without the express consent of the project or of the respective owners is not allowed.',
+        ],
+      },
+      {
+        title: 'Limitation of liability',
+        paragraphs: [
+          'The information on the portal is provided as is and may be updated, corrected or removed without notice.',
+          'The project team works to keep the data as accurate as possible, but cannot guarantee that it is free of errors or omissions, or that the service will never be interrupted.',
+        ],
+      },
+    ],
+  },
+  privacy: {
+    title: 'Privacy',
+    intro: 'A provisional overview of how the personal data of portal users is processed.',
+    sections: [
+      {
+        title: 'Data collected',
+        paragraphs: [
+          'While you use the portal we may collect identifying and operational data such as your nickname, login email, profile preferences and the information you enter in the campaign features.',
+          'This data is processed only as far as needed for login, navigation, results management and the technical administration of the platform.',
+        ],
+      },
+      {
+        title: 'Purposes of processing',
+        paragraphs: [
+          'Personal data is used to give you access to the portal services, keep the application secure, organise the campaign activities and support users.',
+          'Any further purposes, the detailed legal bases and retention periods will be described in the final version of the privacy notice.',
+        ],
+      },
+      {
+        title: 'Your rights',
+        paragraphs: [
+          'Users can ask for their data to be updated, corrected or deleted, as provided by the applicable law.',
+          'The official contact details for exercising your privacy rights will be published here as soon as they are finalised.',
+        ],
+      },
+    ],
+  },
+  cookie: {
+    title: 'Cookies',
+    intro: 'Information about technical cookies and any tracking tools.',
+    sections: [
+      {
+        title: 'Technical cookies',
+        paragraphs: [
+          'The portal may use technical cookies or similar tools needed for login, the user session and essential browsing preferences.',
+          'These tools make the application work properly and do not necessarily require any action from you each time you visit.',
+        ],
+      },
+      {
+        title: 'Optional tools',
+        paragraphs: [
+          'Any analytics tools, external integrations or extra features that involve tracking will be listed explicitly on this page.',
+          'Where present, they will come with clear information on their purpose, how long they last and how to manage your consent.',
+        ],
+      },
+      {
+        title: 'Managing your preferences',
+        paragraphs: [
+          'You can manage your cookie preferences at any time through your browser settings or through the tools the portal will make available.',
+          'The final documentation, with the complete list of cookies, will be published in this section.',
+        ],
+      },
+    ],
+  },
+  contacts: {
+    title: 'Contact',
+    intro: 'Provisional contact details for information requests, support and official communications.',
+    sections: [
+      {
+        title: 'General support',
+        paragraphs: [
+          'This page will list the official contacts for technical support, information requests and organisational communications about the portal.',
+          'Until the final contact details are published, this information is being updated.',
+        ],
+      },
+      {
+        title: 'Account requests',
+        paragraphs: [
+          'Requests about account management, data corrections and operational support will have a dedicated channel, which will be listed here.',
+          'This section will be updated with an email address, any contact forms and typical response times.',
+        ],
+      },
+      {
+        title: 'Contact details being updated',
+        paragraphs: [
+          'Main contact: being defined.',
+          'Official project channels: due in one of the next portal updates.',
+        ],
+      },
+    ],
+  },
+} as const;
+
+const pageKey = computed(() => String(route.name ?? '').replace('info-', '') as keyof typeof pagesIt);
+const page = computed(() => {
+  const pages = locale.value === 'en' ? pagesEn : pagesIt;
+  return pages[pageKey.value] ?? pages.legal;
+});
 const pageTitle = computed(() => page.value.title);
 const pageIntro = computed(() => page.value.intro);
 const pageSections = computed(() => page.value.sections);

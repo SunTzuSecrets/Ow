@@ -1,9 +1,9 @@
 <template>
   <form class="auth-form" @submit.prevent="handleSubmit">
-    <p class="eyebrow">Accesso</p>
-    <h2>Entra nel portale</h2>
+    <p class="eyebrow">{{ t('login.eyebrow') }}</p>
+    <h2>{{ t('login.title') }}</h2>
     <label>
-      <span>Email o nickname</span>
+      <span>{{ t('login.user') }}</span>
       <input 
         v-model="email" 
         type="text" 
@@ -13,7 +13,7 @@
       />
     </label>
     <label>
-      <span>Password</span>
+      <span>{{ t('login.password') }}</span>
       <input 
         v-model="password" 
         type="password" 
@@ -23,15 +23,16 @@
       />
     </label>
     <button class="primary-button" type="submit" :disabled="isLoading">
-      {{ isLoading ? 'Accesso in corso...' : 'Accedi' }}
+      {{ isLoading ? t('login.loading') : t('login.submit') }}
     </button>
     <div v-if="error" class="error-message">{{ error }}</div>
-    <RouterLink to="/auth/forgot-password" class="text-link">Password dimenticata?</RouterLink>
-    <RouterLink to="/auth/register" class="text-link">Non hai un account? Registrati</RouterLink>
+    <RouterLink to="/auth/forgot-password" class="text-link">{{ t('login.forgot') }}</RouterLink>
+    <RouterLink to="/auth/register" class="text-link">{{ t('login.noAccount') }}</RouterLink>
   </form>
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { ref } from 'vue';
 import { RouterLink, useRouter, useRoute } from 'vue-router';
 import { useAppStore } from '@/stores/app';
@@ -56,7 +57,7 @@ const handleSubmit = async () => {
     const redirectTo = route.query.redirect as string || '/';
     router.push(redirectTo);
   } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Errore durante l\'accesso';
+    error.value = err instanceof Error ? err.message : t('login.error');
   } finally {
     isLoading.value = false;
   }

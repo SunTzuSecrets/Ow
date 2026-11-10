@@ -2,13 +2,13 @@
   <section class="map-card">
     <div class="map-stage interactive-map-stage">
       <div class="map-territory-banner">
-        <strong>{{ activeTerritory?.name ?? 'Territori campagna' }}</strong>
-        <span>{{ activeTerritory ? 'Territorio selezionato sulla mappa' : 'Passa sopra un territorio o cliccalo per mantenerlo selezionato' }}</span>
+        <strong>{{ activeTerritory?.name ?? t('map.territories') }}</strong>
+        <span>{{ activeTerritory ? t('map.selected') : t('map.hint') }}</span>
       </div>
 
       <img
         :src="campaignMap"
-        alt="Mappa della campagna"
+        :alt="t('map.alt')"
         class="campaign-map"
         loading="eager"
         decoding="async"
@@ -80,32 +80,32 @@
 
     <section v-if="activeTerritory" class="map-territory-details">
       <div class="map-territory-summary">
-        <p class="eyebrow">Focus territorio</p>
+        <p class="eyebrow">{{ t('map.focus') }}</p>
         <h3>{{ activeTerritory.name }}</h3>
         <p class="muted-copy">{{ activeTerritory.description }}</p>
 
         <div class="map-territory-metrics">
           <article class="map-metric-card">
-            <span>Partite giocate</span>
+            <span>{{ t('map.gamesPlayed') }}</span>
             <strong>{{ activeTerritoryConfirmedBattles }}</strong>
           </article>
           <article class="map-metric-card">
-            <span>Fazione dominante</span>
+            <span>{{ t('map.dominantFaction') }}</span>
             <strong v-if="activeTerritoryLeadingFaction">{{ factionLabel(activeTerritoryLeadingFaction) }}</strong>
-            <strong v-else-if="activeTerritoryIsContested">Conteso</strong>
-            <strong v-else>N.A.</strong>
+            <strong v-else-if="activeTerritoryIsContested">{{ t('map.contested') }}</strong>
+            <strong v-else>{{ t('map.na') }}</strong>
           </article>
         </div>
       </div>
 
       <div class="map-territory-chart-card">
-        <p class="eyebrow">Controllo locale</p>
+        <p class="eyebrow">{{ t('map.localControl') }}</p>
         <div v-if="activeTerritoryHasBattleData" class="map-territory-chart-content">
           <div class="map-territory-pie-wrap">
             <FactionPieChart
               class="faction-pie map-territory-pie"
               :segments="activeTerritoryFactionControl"
-              label="Distribuzione del controllo per il territorio selezionato"
+              :label="t('map.localPieLabel')"
             />
           </div>
 
@@ -116,14 +116,14 @@
               class="map-territory-legend-item"
             >
               <FactionBadge :faction="entry.faction" />
-              <span>{{ entry.percentage }}% · {{ entry.wins }} vittorie</span>
+              <span>{{ entry.percentage }}% · {{ entry.wins }} {{ t('map.wins') }}</span>
             </div>
           </div>
         </div>
 
         <div v-else class="map-territory-empty-state">
-          <strong>N.A.</strong>
-          <span>Ancora nessuna partita confermata su questo territorio.</span>
+          <strong>{{ t('map.na') }}</strong>
+          <span>{{ t('map.noGames') }}</span>
         </div>
       </div>
     </section>
@@ -131,6 +131,7 @@
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { computed, onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import fallbackCampaignMap from '@/assets/maps/campaign-map.jpeg';

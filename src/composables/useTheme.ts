@@ -34,6 +34,38 @@ function hexToRgb(hex: string): [number, number, number] {
   ];
 }
 
+function relativeLuminance([red, green, blue]: [number, number, number]) {
+  const channel = (value: number) => {
+    const srgb = value / 255;
+    return srgb <= 0.03928 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+  };
+
+  return 0.2126 * channel(red) + 0.7152 * channel(green) + 0.0722 * channel(blue);
+}
+
+// Faction colours are tuned for map fills; for text on the dark panels we
+// lighten them just enough to reach a 4.5:1 contrast ratio.
+const PANEL_LUMINANCE = relativeLuminance([21, 18, 18]);
+
+function readableOnDark(hex: string) {
+  const [red, green, blue] = hexToRgb(hex);
+
+  for (let mix = 0; mix <= 1; mix += 0.05) {
+    const candidate: [number, number, number] = [
+      Math.round(red + (255 - red) * mix),
+      Math.round(green + (255 - green) * mix),
+      Math.round(blue + (255 - blue) * mix),
+    ];
+    const contrast = (relativeLuminance(candidate) + 0.05) / (PANEL_LUMINANCE + 0.05);
+
+    if (contrast >= 4.5) {
+      return `rgb(${candidate[0]}, ${candidate[1]}, ${candidate[2]})`;
+    }
+  }
+
+  return '#F2EEEA';
+}
+
 export function useTheme() {
   const appStore = useAppStore();
 
@@ -42,19 +74,18 @@ export function useTheme() {
 
   const factionLabel = (faction: Faction) => factionMeta(faction).name;
   const factionColor = (faction: Faction) => factionMeta(faction).color;
+  const factionTextColor = (faction: Faction) => readableOnDark(factionColor(faction));
   const factionBadgeStyle = (faction: Faction): CSSProperties => {
-    const color = factionColor(faction);
-
     return {
-      color,
+      color: factionTextColor(faction),
     };
   };
   const factionSurfaceStyle = (faction: Faction): CSSProperties => {
     const color = factionColor(faction);
 
     return {
-      color,
-      borderColor: hexToRgba(color, 0.2),
+      color: factionTextColor(faction),
+      borderColor: hexToRgba(color, 0.45),
       background: 'rgba(0, 0, 0, 0.24)',
       boxShadow: 'none',
     };
@@ -70,6 +101,7 @@ export function useTheme() {
     factionMeta,
     factionLabel,
     factionColor,
+    factionTextColor,
     factionBadgeStyle,
     factionSurfaceStyle,
     factionFillStyle,

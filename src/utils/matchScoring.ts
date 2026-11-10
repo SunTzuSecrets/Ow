@@ -1,3 +1,5 @@
+import { t } from '@/i18n';
+
 export function calculateMatchPoints(playerAVictoryPoints: number, playerBVictoryPoints: number) {
   const difference = Math.abs(playerAVictoryPoints - playerBVictoryPoints);
 
@@ -24,23 +26,23 @@ export function calculateMatchPoints(playerAVictoryPoints: number, playerBVictor
 
 export function battleOutcomeLabel(leftScore: number, rightScore: number) {
   if (leftScore === rightScore) {
-    return 'Pareggio';
+    return t('outcome.draw');
   }
 
   const isWin = leftScore > rightScore;
   const winningScore = Math.max(leftScore, rightScore);
 
   if (winningScore === 4) {
-    return isWin ? 'Vittoria Minore' : 'Sconfitta Minore';
+    return isWin ? t('outcome.minorWin') : t('outcome.minorLoss');
   }
 
   if (winningScore === 5) {
-    return isWin ? 'Vittoria Maggiore' : 'Sconfitta Maggiore';
+    return isWin ? t('outcome.majorWin') : t('outcome.majorLoss');
   }
 
   if (winningScore === 6) {
-    return isWin ? 'Massacro' : 'Sconfitta Totale';
+    return isWin ? t('outcome.massacre') : t('outcome.totalLoss');
   }
 
-  return isWin ? 'Vittoria' : 'Sconfitta';
+  return isWin ? t('outcome.win') : t('outcome.loss');
 }

@@ -1,10 +1,10 @@
 <template>
   <div class="matches-list">
-    <p v-if="matches.length === 0" class="muted-copy empty-state">Nessuna partita disputata</p>
+    <p v-if="matches.length === 0" class="muted-copy empty-state">{{ t('matches.none') }}</p>
 
     <article v-for="match in matches" :key="match.id" class="match-row compact">
       <p class="match-battle-title">
-        <strong>Battaglia per: {{ match.territoryName }}</strong>
+        <strong>{{ t('matches.battleFor') }} {{ match.territoryName }}</strong>
         <span> - {{ battleOutcomeLabel(match) }}</span>
       </p>
 
@@ -34,6 +34,7 @@
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { storeToRefs } from 'pinia';
 import type { MatchSummary } from '@/types';
 import { useTheme } from '@/composables/useTheme';

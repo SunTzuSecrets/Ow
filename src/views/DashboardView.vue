@@ -6,21 +6,21 @@
 
     <section class="home-stats-layout">
       <div class="home-stats-stack">
-        <StatCard label="Territori attivi" :value="territories.length" />
-        <StatCard label="Battaglie confermate" :value="confirmedBattles" />
+        <StatCard :label="t('dashboard.activeTerritories')" :value="territories.length" />
+        <StatCard :label="t('dashboard.confirmedBattles')" :value="confirmedBattles" />
       </div>
 
       <article class="stat-card faction-stat-card">
-        <p class="eyebrow">Fazione in vantaggio</p>
+        <p class="eyebrow">{{ t('dashboard.leadingFaction') }}</p>
         <div class="faction-stat-body">
           <div class="faction-pie-wrap">
             <FactionPieChart
               class="faction-pie"
               :segments="factionDistribution"
-              label="Distribuzione del controllo tra le tre fazioni"
+              :label="t('dashboard.pieLabel')"
             />
             <p class="faction-stat-label" :style="leadingFactionColor ? { color: leadingFactionColor } : undefined">
-              {{ leadingFaction ?? 'Equilibrio tra le fazioni' }}
+              {{ leadingFaction ?? t('dashboard.balanced') }}
             </p>
           </div>
 
@@ -29,9 +29,9 @@
               v-for="entry in factionPointsLegend"
               :key="entry.faction"
               class="faction-points-item"
-              :style="{ color: factionColor(entry.faction) }"
+              :style="{ color: factionTextColor(entry.faction) }"
             >
-              {{ entry.short }} {{ entry.points }} pt
+              {{ entry.short }} {{ entry.points }} {{ t('dashboard.points') }}
             </span>
           </div>
         </div>
@@ -41,8 +41,8 @@
     <section class="content-grid single-column">
       <div class="panel-card home-recent-matches">
         <SectionHeader
-          eyebrow="Ultimi scontri"
-          title="Match recenti"
+          :eyebrow="t('dashboard.recentEyebrow')"
+          :title="t('dashboard.recentTitle')"
         />
         <MatchesTable :matches="confirmedRecentMatches.slice(0, 10)" />
       </div>
@@ -51,6 +51,7 @@
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import FactionPieChart from '@/components/FactionPieChart.vue';
@@ -64,7 +65,7 @@ import { useAppStore } from '@/stores/app';
 
 const appStore = useAppStore();
 const { dashboardSummary, recentMatches, territories } = storeToRefs(appStore);
-const { factionColor, factionLabel } = useTheme();
+const { factionColor, factionLabel, factionTextColor } = useTheme();
 const factionOrder: Faction[] = ['FORCES_OF_FANTASY', 'RAVAGING_HORDES', 'UNDEAD'];
 
 const confirmedRecentMatches = computed(() =>
@@ -131,7 +132,7 @@ const leadingFactionColor = computed(() => {
     return null;
   }
 
-  return factionColor(first.faction);
+  return factionTextColor(first.faction);
 });
 
 </script>

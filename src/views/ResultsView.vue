@@ -1,8 +1,8 @@
 <template>
   <div class="page-stack">
     <SectionHeader
-      eyebrow="I miei risultati"
-      title="Storico conferme e partite pendenti"
+      :eyebrow="t('results.eyebrow')"
+      :title="t('results.title')"
     />
 
     <section class="panel-card">
@@ -11,8 +11,8 @@
 
     <section v-if="pendingMatchesForMe.length > 0" class="panel-card pending-results-panel">
       <div class="pending-results-head">
-        <p class="eyebrow">Da confermare</p>
-        <h3>Partite da verificare</h3>
+        <p class="eyebrow">{{ t('results.toConfirm') }}</p>
+        <h3>{{ t('results.toVerify') }}</h3>
       </div>
 
       <div class="pending-results-list">
@@ -22,7 +22,7 @@
           class="pending-result-card"
         >
           <p class="match-battle-title">
-            <strong>Battaglia per: {{ match.territoryName }}</strong>
+            <strong>{{ t('matches.battleFor') }} {{ match.territoryName }}</strong>
             <span> - {{ pendingForMeOutcomeLabel(match) }}</span>
           </p>
 
@@ -32,7 +32,7 @@
                 <strong>{{ user?.nickname }}</strong>
                 <span class="match-player-vp">({{ match.yourScore }})</span>
               </div>
-              <p class="match-player-meta">(In attesa della tua conferma)</p>
+              <p class="match-player-meta">{{ t('results.awaitingYours') }}</p>
             </div>
 
             <span class="match-player-score match-player-score-outside">{{ pendingForMeMatchPoints(match).playerA }}</span>
@@ -48,15 +48,15 @@
             </div>
           </div>
 
-          <p class="pending-result-status">Da confermare</p>
+          <p class="pending-result-status">{{ t('results.toConfirm') }}</p>
         </article>
       </div>
     </section>
 
     <section v-if="pendingMatchesByMe.length > 0" class="panel-card pending-results-panel">
       <div class="pending-results-head">
-        <p class="eyebrow">In attesa di conferma</p>
-        <h3>Partite inserite da te</h3>
+        <p class="eyebrow">{{ t('results.awaiting') }}</p>
+        <h3>{{ t('results.enteredByYou') }}</h3>
       </div>
 
       <div class="pending-results-list">
@@ -66,7 +66,7 @@
           class="pending-result-card"
         >
           <p class="match-battle-title">
-            <strong>Battaglia per: {{ match.territoryName }}</strong>
+            <strong>{{ t('matches.battleFor') }} {{ match.territoryName }}</strong>
             <span> - {{ pendingOutcomeLabel(match) }}</span>
           </p>
 
@@ -88,11 +88,11 @@
                 <strong>{{ match.opponentNickname }}</strong>
                 <span class="match-player-vp">({{ match.opponentScore }})</span>
               </div>
-              <p class="match-player-meta">(In attesa di conferma)</p>
+              <p class="match-player-meta">{{ t('results.awaitingParen') }}</p>
             </div>
           </div>
 
-          <p class="pending-result-status">In attesa di conferma</p>
+          <p class="pending-result-status">{{ t('results.awaiting') }}</p>
         </article>
       </div>
     </section>
@@ -100,6 +100,7 @@
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { computed, onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import MatchesTable from '@/components/MatchesTable.vue';

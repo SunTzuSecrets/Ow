@@ -4,8 +4,8 @@
       <form class="panel-card form-grid" @submit.prevent="handleSubmit">
         <div v-if="pendingSuggestions.length > 0" class="full-span pending-suggestions">
           <div class="pending-suggestions-head">
-            <span>Da confermare</span>
-            <small class="muted-copy">Selezionandone uno, il form si precompila con territorio, avversario e punteggi speculari.</small>
+            <span>{{ t('submit.toConfirm') }}</span>
+            <small class="muted-copy">{{ t('submit.suggestionHint') }}</small>
           </div>
 
           <div class="pending-suggestions-list">
@@ -24,9 +24,9 @@
         </div>
 
         <label class="submit-territory">
-          <span>Territorio</span>
+          <span>{{ t('submit.territory') }}</span>
           <select v-model="form.territoryId" required>
-            <option value="" disabled>Seleziona un territorio abilitato</option>
+            <option value="" disabled>{{ t('submit.selectTerritory') }}</option>
             <option v-for="territory in availableTerritories" :key="territory.id" :value="territory.id">
               {{ territory.name }}
             </option>
@@ -36,9 +36,9 @@
         <div class="submit-layout-spacer" aria-hidden="true"></div>
 
         <label class="submit-army">
-          <span>Armata</span>
+          <span>{{ t('submit.army') }}</span>
           <select v-model="form.ownArmyId" required>
-            <option value="" disabled>Seleziona una armata</option>
+            <option value="" disabled>{{ t('submit.selectArmy') }}</option>
             <option v-for="army in sortedArmies" :key="army.id" :value="army.id">
               {{ army.name }}
             </option>
@@ -50,19 +50,19 @@
         </div>
 
         <label class="submit-opponent-search">
-          <span>Nickname avversario</span>
+          <span>{{ t('submit.opponent') }}</span>
           <input
             v-model.trim="opponentSearch"
             type="text"
-            placeholder="Cerca nickname avversario"
+            :placeholder="t('submit.searchOpponent')"
             autocomplete="off"
           />
         </label>
 
         <label class="submit-opponent-select">
-          <span class="sr-only">Selezione avversario</span>
+          <span class="sr-only">{{ t('submit.opponentSr') }}</span>
           <select v-model="form.opponentNickname" required>
-            <option value="" disabled>Seleziona un avversario</option>
+            <option value="" disabled>{{ t('submit.selectOpponent') }}</option>
             <option
               v-for="opponent in filteredOpponents"
               :key="opponent.id"
@@ -74,35 +74,35 @@
         </label>
 
         <label class="submit-own-score">
-          <span>Miei punti vittoria</span>
+          <span>{{ t('submit.myVp') }}</span>
           <input v-model.number="form.ownScore" type="number" min="0" required />
         </label>
 
         <label class="submit-opponent-score">
-          <span>P.V. avversario</span>
+          <span>{{ t('submit.opponentVp') }}</span>
           <input v-model.number="form.opponentScore" type="number" min="0" required />
         </label>
 
         <label class="submit-notes">
-          <span>Note</span>
-          <textarea v-model="form.note" rows="4" placeholder="Dettagli extra, missione, scenario, anomalia da segnalare..." />
+          <span>{{ t('submit.notes') }}</span>
+          <textarea v-model="form.note" rows="4" :placeholder="t('submit.notesPh')" />
         </label>
 
         <button class="primary-button submit-button" :disabled="isSubmitting || !canSubmitNewMatch" type="submit">
-          {{ isSubmitting ? 'Invio in corso...' : 'Invia risultato' }}
+          {{ isSubmitting ? t('submit.sending') : t('submit.send') }}
         </button>
         <p v-if="loadError" class="field-error full-span">{{ loadError }}</p>
       </form>
 
       <aside class="panel-card callout-card submit-result-callout">
-        <p class="eyebrow">Regole di conferma</p>
-        <h3>Come il sistema conferma il match</h3>
+        <p class="eyebrow">{{ t('submit.rulesEyebrow') }}</p>
+        <h3>{{ t('submit.rulesTitle') }}</h3>
         <ul class="text-list">
-          <li>Entrambi i giocatori devono indicare lo stesso territorio.</li>
-          <li>I punteggi devono combaciare in modo speculare.</li>
-          <li>I match incoerenti restano fuori dalle statistiche finche non vengono risolti.</li>
-          <li>Le partite che matchano vengono automaticamente registrate come accoppiate all inserimento.</li>
-          <li>Il sistema propone i match inseriti dal proprio avversario ed ancora da te non confermati.</li>
+          <li>{{ t('submit.rule1') }}</li>
+          <li>{{ t('submit.rule2') }}</li>
+          <li>{{ t('submit.rule3') }}</li>
+          <li>{{ t('submit.rule4') }}</li>
+          <li>{{ t('submit.rule5') }}</li>
         </ul>
         <p v-if="submitMessage" class="success-message">{{ submitMessage }}</p>
       </aside>
@@ -111,6 +111,7 @@
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { computed, onMounted, reactive, ref, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useTheme } from '@/composables/useTheme';
@@ -245,27 +246,27 @@ onMounted(async () => {
   }
 
   if (usersResult.status === 'rejected') {
-    loadError.value = 'Non sono riuscito a caricare la lista avversari dal server.';
+    loadError.value = t('submit.errOpponents');
   }
 
   const missingLookupParts = [];
 
   if (territories.value.length === 0) {
-    missingLookupParts.push('territori');
+    missingLookupParts.push(t('submit.part.territories'));
   }
 
   if (sortedArmies.value.length === 0) {
-    missingLookupParts.push('armate');
+    missingLookupParts.push(t('submit.part.armies'));
   }
 
   if (availableOpponents.value.length === 0) {
-    missingLookupParts.push('avversari');
+    missingLookupParts.push(t('submit.part.opponents'));
   }
 
   if (missingLookupParts.length > 0) {
-    loadError.value = `Non sono riuscito a caricare: ${missingLookupParts.join(', ')}.`;
+    loadError.value = t('submit.errMissing', { list: missingLookupParts.join(', ') });
   } else if (availableTerritories.value.length === 0) {
-    loadError.value = 'Al momento non ci sono territori abilitati alla registrazione di nuovi match.';
+    loadError.value = t('submit.noEnabled');
   } else {
     loadError.value = '';
 
@@ -302,7 +303,7 @@ async function handleSubmit() {
       pendingSuggestions.value = pendingResult.value;
     }
   } catch (error) {
-    loadError.value = error instanceof Error ? error.message : 'Errore durante il salvataggio del risultato.';
+    loadError.value = error instanceof Error ? error.message : t('submit.saveError');
   } finally {
     isSubmitting.value = false;
   }

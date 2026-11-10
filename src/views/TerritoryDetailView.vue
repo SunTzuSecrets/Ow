@@ -2,26 +2,26 @@
   <div v-if="territory" class="page-stack">
     <section class="detail-hero">
       <div>
-        <p class="eyebrow">Dettaglio territorio</p>
+        <p class="eyebrow">{{ t('territory.eyebrow') }}</p>
         <h1>{{ territory.name }}</h1>
         <p class="muted-copy">{{ territory.description }}</p>
         <p class="detail-lore">{{ territory.lore }}</p>
       </div>
       <div class="detail-side">
         <FactionBadge :faction="territory.stats.dominantFaction" />
-        <div class="logo-placeholder">Stemmi / Artwork territorio</div>
+        <div class="logo-placeholder">{{ t('territory.artwork') }}</div>
       </div>
     </section>
 
     <section class="stats-grid">
-      <StatCard label="Match confermati" :value="territory.stats.confirmedBattles" />
-      <StatCard label="Match pendenti" :value="territory.stats.pendingBattles" />
-      <StatCard label="Fazione dominante" :value="factionLabel(territory.stats.dominantFaction)" />
+      <StatCard :label="t('territory.confirmed')" :value="territory.stats.confirmedBattles" />
+      <StatCard :label="t('territory.pending')" :value="territory.stats.pendingBattles" />
+      <StatCard :label="t('territory.dominantFaction')" :value="factionLabel(territory.stats.dominantFaction)" />
     </section>
 
     <section class="content-grid two-columns">
       <div class="panel-card">
-        <SectionHeader eyebrow="Controllo fazioni" title="Ripartizione territorio" />
+        <SectionHeader :eyebrow="t('territory.factionControl')" :title="t('territory.breakdown')" />
         <div class="breakdown-list">
           <div v-for="entry in territory.stats.factionControl" :key="entry.faction" class="breakdown-row">
             <div class="breakdown-head">
@@ -36,7 +36,7 @@
       </div>
 
       <div class="panel-card">
-        <SectionHeader eyebrow="Controllo armate" title="Armate piu influenti" />
+        <SectionHeader :eyebrow="t('territory.armyControl')" :title="t('territory.topArmies')" />
         <div class="breakdown-list">
           <div v-for="entry in territory.stats.armyControl" :key="entry.armyName" class="breakdown-row">
             <div class="breakdown-head">
@@ -52,13 +52,14 @@
     </section>
 
     <section class="panel-card">
-      <SectionHeader eyebrow="Storico recente" title="Battaglie sul territorio" />
+      <SectionHeader :eyebrow="t('territory.recentHistory')" :title="t('territory.battles')" />
       <MatchesTable :matches="territoryMatches" />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';

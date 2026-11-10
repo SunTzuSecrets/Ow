@@ -1,37 +1,38 @@
 <template>
   <form class="auth-form" @submit.prevent="handleSubmit">
-    <p class="eyebrow">Registrazione</p>
-    <h2>Crea un nuovo comandante</h2>
+    <p class="eyebrow">{{ t('register.eyebrow') }}</p>
+    <h2>{{ t('register.title') }}</h2>
     <label>
-      <span>Nickname</span>
+      <span>{{ t('register.nickname') }}</span>
       <input v-model.trim="form.nickname" type="text" minlength="4" autocomplete="username" required />
       <small v-if="errors.nickname" class="field-error">{{ errors.nickname }}</small>
     </label>
     <label>
-      <span>Email</span>
+      <span>{{ t('register.email') }}</span>
       <input v-model.trim="form.email" type="email" autocomplete="email" required />
       <small v-if="errors.email" class="field-error">{{ errors.email }}</small>
     </label>
     <label>
-      <span>Password</span>
+      <span>{{ t('register.password') }}</span>
       <input v-model="form.password" type="password" minlength="8" autocomplete="new-password" required />
       <small v-if="errors.password" class="field-error">{{ errors.password }}</small>
     </label>
     <label>
-      <span>Conferma password</span>
+      <span>{{ t('register.confirm') }}</span>
       <input v-model="form.passwordConfirmation" type="password" minlength="8" autocomplete="new-password" required />
       <small v-if="errors.passwordConfirmation" class="field-error">{{ errors.passwordConfirmation }}</small>
     </label>
     <button class="primary-button" :disabled="appStore.isLoading" type="submit">
-      {{ appStore.isLoading ? 'Registrazione in corso...' : 'Registrati' }}
+      {{ appStore.isLoading ? t('register.loading') : t('register.submit') }}
     </button>
     <p v-if="serverMessage" class="success-message">{{ serverMessage }}</p>
     <p v-if="serverError" class="field-error">{{ serverError }}</p>
-    <RouterLink to="/auth/login" class="text-link">Hai gia un account? Accedi</RouterLink>
+    <RouterLink to="/auth/login" class="text-link">{{ t('register.haveAccount') }}</RouterLink>
   </form>
 </template>
 
 <script setup lang="ts">
+import { t } from '@/i18n';
 import { reactive, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { useAppStore } from '@/stores/app';
@@ -73,22 +74,22 @@ function validateForm() {
   let isValid = true;
 
   if (form.nickname.length < 4) {
-    errors.nickname = 'Il nickname deve avere almeno 4 caratteri.';
+    errors.nickname = t('register.errNickname');
     isValid = false;
   }
 
   if (!validEmail(form.email)) {
-    errors.email = 'Inserisci una email valida.';
+    errors.email = t('register.errEmail');
     isValid = false;
   }
 
   if (form.password.length < 8) {
-    errors.password = 'La password deve avere almeno 8 caratteri.';
+    errors.password = t('register.errPassword');
     isValid = false;
   }
 
   if (form.password !== form.passwordConfirmation) {
-    errors.passwordConfirmation = 'Le due password non coincidono.';
+    errors.passwordConfirmation = t('register.errMatch');
     isValid = false;
   }
 
@@ -105,14 +106,14 @@ async function handleSubmit() {
     serverMessage.value = result.message;
 
     if (result.emailStatus === 'failed') {
-      serverError.value = 'Registrazione completata, ma l invio email non e riuscito sul server.';
+      serverError.value = t('register.emailFailed');
     }
 
     setTimeout(() => {
       router.push('/');
     }, 1200);
   } catch (error) {
-    serverError.value = error instanceof Error ? error.message : 'Registrazione non riuscita.';
+    serverError.value = error instanceof Error ? error.message : t('register.failed');
   }
 }
 </script>
