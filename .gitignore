@@ -5,3 +5,6 @@ dist
 .env.local
 coverage
 
+
+# Real credentials: keep only on the server
+backend/config/config.php

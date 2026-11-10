@@ -49,7 +49,11 @@ for ext in jpg jpeg png webp; do
   fi
 done
 cp backend/src/Database.php "${DIST_DIR}/backend/src/Database.php"
-cp backend/config/config.php "${DIST_DIR}/backend/config/config.php"
+if [ -f backend/config/config.php ]; then
+  cp backend/config/config.php "${DIST_DIR}/backend/config/config.php"
+else
+  echo "Attenzione: backend/config/config.php non presente (non è nel repo). Usa quello già sul server o crealo da config.example.php."
+fi
 cp .htaccess "${DIST_DIR}/.htaccess"
 
 chmod 644 "${DIST_DIR}/api/index.php"
@@ -63,7 +67,7 @@ for ext in jpg jpeg png webp; do
   fi
 done
 chmod 644 "${DIST_DIR}/backend/src/Database.php"
-chmod 600 "${DIST_DIR}/backend/config/config.php"
+[ -f "${DIST_DIR}/backend/config/config.php" ] && chmod 600 "${DIST_DIR}/backend/config/config.php"
 chmod 644 "${DIST_DIR}/.htaccess"
 
 echo
