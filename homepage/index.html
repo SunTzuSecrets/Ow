@@ -3,21 +3,157 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sun-Tzu Secrets · Warhammer: The Old World</title>
-<meta name="description" content="Sun-Tzu Secrets: the Warhammer: The Old World strategy channel in English and Italian. Tactics, battle reports, memberships, giveaways and the narrative campaign.">
+<title>Sun-Tzu Secrets · Warhammer: The Old World strategy channel</title>
+<meta name="description" content="Sun-Tzu Secrets: the Warhammer: The Old World strategy channel, in English and Italian. Tactics, battle reports, memberships, giveaways and the narrative campaign.">
+<link rel="canonical" href="https://www.suntzusecrets.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sun-Tzu Secrets">
+<meta property="og:title" content="Sun-Tzu Secrets · The art of war in Warhammer: The Old World">
+<meta property="og:description" content="Sun-Tzu Secrets: the Warhammer: The Old World strategy channel, in English and Italian. Tactics, battle reports, memberships, giveaways and the narrative campaign.">
+<meta property="og:url" content="https://www.suntzusecrets.com/">
+<meta property="og:image" content="https://www.suntzusecrets.com/images/banner.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A0909">
 <link rel="icon" href="images/logo.webp">
 <script>
 /* Old campaign links (suntzusecrets.com/#/...) now live on the campaign subdomain */
 if (location.hash.indexOf('#/') === 0) { location.replace('https://campagna.suntzusecrets.com/' + location.hash); }
 </script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&amp;family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@600;700&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#0A0909}
-a{color:#F2EEEA}a:hover{color:#D4AF37}
+/* cinzel-latin-ext-700-normal */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(fonts/cinzel-latin-ext-700-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* cinzel-latin-700-normal */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(fonts/cinzel-latin-700-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* cinzel-latin-ext-900-normal */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src: url(fonts/cinzel-latin-ext-900-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* cinzel-latin-900-normal */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src: url(fonts/cinzel-latin-900-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* barlow-latin-ext-400-normal */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(fonts/barlow-latin-ext-400-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* barlow-latin-400-normal */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(fonts/barlow-latin-400-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* barlow-latin-ext-500-normal */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(fonts/barlow-latin-ext-500-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* barlow-latin-500-normal */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url(fonts/barlow-latin-500-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* barlow-latin-ext-600-normal */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(fonts/barlow-latin-ext-600-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* barlow-latin-600-normal */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(fonts/barlow-latin-600-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* barlow-condensed-latin-ext-600-normal */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(fonts/barlow-condensed-latin-ext-600-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* barlow-condensed-latin-600-normal */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(fonts/barlow-condensed-latin-600-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+/* barlow-condensed-latin-ext-700-normal */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(fonts/barlow-condensed-latin-ext-700-normal.woff2) format('woff2');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+/* barlow-condensed-latin-700-normal */
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url(fonts/barlow-condensed-latin-700-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 </style>
 <style>
+
+body{margin:0;background:#0A0909}
+.team-bg-a{background:#0E0D0D url(images/team-bg-left.webp) center/cover no-repeat}
+.team-bg-b{background:#0E0D0D url(images/team-bg-right.webp) center/cover no-repeat}
+a{color:#F2EEEA}a:hover{color:#D4AF37}
+
 [data-set-lang]{background:transparent;color:#C9C2BE}
 [data-set-lang][aria-pressed="true"]{background:#D42A20;color:#FFFFFF}
 [hidden]{display:none !important}
@@ -33,7 +169,7 @@ a{color:#F2EEEA}a:hover{color:#D4AF37}
 <span style="display: flex; flex-direction: column; line-height: 1.1"><span style="font-family: 'Cinzel', serif; font-weight: 900; font-size: 20px; letter-spacing: 0.06em">SUN-TZU SECRETS</span><span style="font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #D4AF37">Warhammer: The Old World</span></span>
 </a>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase">
-<div data-lang="en">
+<div data-lang="en" style="display: contents">
 <a href="#content" style="text-decoration: none">Content</a>
 <a href="#members" style="text-decoration: none">Members</a>
 <a href="#giveaway" style="text-decoration: none">Giveaway</a>
@@ -41,7 +177,7 @@ a{color:#F2EEEA}a:hover{color:#D4AF37}
 <a href="#team" style="text-decoration: none">The team</a>
 <a href="#contact" style="text-decoration: none">Contact</a>
 </div>
-<div data-lang="it" hidden>
+<div data-lang="it" style="display: contents" hidden>
 <a href="#content" style="text-decoration: none">Contenuti</a>
 <a href="#members" style="text-decoration: none">Membri</a>
 <a href="#giveaway" style="text-decoration: none">Giveaway</a>
@@ -58,10 +194,10 @@ a{color:#F2EEEA}a:hover{color:#D4AF37}
 </header>
 
 <section id="top" style="background: #000000">
-<img src="images/banner.webp" alt="Sun-Tzu Secrets" style="display: block; width: 100%; max-width: 380px; height: auto; margin: 0 auto; -webkit-mask-image: radial-gradient(ellipse 55% 55% at 50% 50%, #000 72%, transparent 100%); mask-image: radial-gradient(ellipse 55% 55% at 50% 50%, #000 72%, transparent 100%)">
+<img src="images/banner.webp" alt="Sun-Tzu Secrets" style="display: block; width: 100%; height: clamp(220px, 31.25vw, 900px); object-fit: cover; object-position: center">
 </section>
 
-<div data-lang="en">
+<div data-lang="en" style="display: contents">
 <div lang="en">
 
 <section style="border-bottom: 1px solid #2E2626">
@@ -131,7 +267,7 @@ Subscribe on YouTube</a>
 <li>Your name in the credits of every video</li>
 <li>Members-only polls</li>
 <li>Priority replies in the comments</li>
-<li>Members-only Discord</li>
+<li>Members-only WhatsApp group</li>
 </ul>
 </div>
 <div style="background: #0A0909; border: 1px solid #2E2626; border-top: 3px solid #C27C3E; border-radius: 4px; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px">
@@ -152,28 +288,20 @@ Subscribe on YouTube</a>
 <li>A vote on the next army we cover</li>
 </ul>
 </div>
-<div style="position: relative; background: #120F0E; border: 1px solid #D4AF37; border-top: 3px solid #D4AF37; border-radius: 4px; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px">
-<span style="position: absolute; top: -13px; right: 16px; background: #D4AF37; color: #0A0909; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px">Only 15 spots remaining</span>
-<div><h3 style="margin: 0; font-family: 'Cinzel', serif; font-weight: 900; font-size: 27px; color: #D4AF37">Master of Secrets</h3><p style="margin: 4px 0 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 32px; color: #F2EEEA">$69.99<span style="font-size: 16px; color: #A49C98; font-weight: 600"> /month · by application</span></p></div>
-<ul style="margin: 0; padding-left: 20px; color: #C9C2BE; font-size: 18px; display: flex; flex-direction: column; gap: 6px">
-<li>A monthly 1-hour live coaching session with a member of Team Italy, <strong style="color: #F2EEEA">World Team Champions 2024 &amp; 2026</strong></li>
-<li>Small group, limited to 15 Masters</li>
-<li>List building, game review, tournament preparation: bring your questions</li>
-</ul>
-</div>
+
 </div>
 <p style="margin: -20px 0 0; font-size: 14px; color: #A49C98">Prices in US dollars. On YouTube you'll see the equivalent in your local currency.</p>
 
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
 <a href="https://www.youtube.com/@suntzusecrets/join" target="_blank" rel="noopener" style="text-decoration: none; background: #D42A20; color: #FFFFFF; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 28px; border-radius: 4px; min-height: 50px; box-sizing: border-box; display: inline-flex; align-items: center">Join on YouTube</a>
-<a href="mailto:suntzusecrets@gmail.com?subject=Master%20of%20Secrets%20application" style="text-decoration: none; border: 1px solid #D4AF37; color: #D4AF37; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 28px; border-radius: 4px; min-height: 50px; box-sizing: border-box; display: inline-flex; align-items: center">Apply for Master</a>
+
 </div>
 </div>
 </section>
 
 <section id="giveaway" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 48px">
 <div style="flex: 1 1 440px; position: relative">
-<img src="images/img-38fe.webp" alt="The painted army up for grabs in the giveaway" style="display: block; width: 100%; height: auto; aspect-ratio: 1600 / 973; object-fit: cover; border-radius: 6px; border: 1px solid #D4AF37">
+<img src="images/giveaway-army.webp" alt="The painted army up for grabs in the giveaway" style="display: block; width: 100%; height: auto; aspect-ratio: 1600 / 973; object-fit: cover; border-radius: 6px; border: 1px solid #D4AF37">
 <span style="position: absolute; top: 16px; left: 16px; background: #D42A20; color: #FFFFFF; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 4px">Win this army</span>
 </div>
 <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 18px">
@@ -191,7 +319,7 @@ Subscribe on YouTube</a>
 <section style="background: #151212; border-top: 1px solid #2E2626; border-bottom: 1px solid #2E2626">
 <div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
 <a href="https://www.workshoplabminiatures.com/" target="_blank" rel="noopener" style="flex: 0 1 340px; background: #FFFFFF; border-radius: 6px; padding: 20px; display: flex; justify-content: center">
-<img src="images/img-896c.webp" alt="WorkShop Lab Miniatures" style="width: 100%; max-width: 300px; height: auto; display: block">
+<img src="images/workshoplab-logo.webp" alt="WorkShop Lab Miniatures" style="width: 100%; max-width: 300px; height: auto; display: block">
 </a>
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px">
 <p style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: #D4AF37">Official partner 2027</p>
@@ -261,9 +389,8 @@ Subscribe on YouTube</a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px">
 <div style="background: #0A0909; border: 1px solid #2E2626; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
-<div aria-hidden="true" style="position: absolute; left: 50%; bottom: -60px; width: 360px; height: 360px; margin-left: -180px; border-radius: 50%; background: #D42A20"></div>
-<img src="images/img-0b22.webp" alt="Andrea" style="position: relative; height: 360px; width: auto; display: block">
+<div class="team-bg-a" style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
+<img src="images/andrea.webp" alt="Andrea" style="position: relative; height: 360px; width: auto; display: block">
 </div>
 <div style="padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 6px">
 <h3 style="margin: 0; font-family: 'Cinzel', serif; font-weight: 900; font-size: 26px">Andrea</h3>
@@ -271,9 +398,8 @@ Subscribe on YouTube</a>
 </div>
 </div>
 <div style="background: #0A0909; border: 1px solid #2E2626; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
-<div aria-hidden="true" style="position: absolute; left: 50%; bottom: -60px; width: 360px; height: 360px; margin-left: -180px; border-radius: 50%; background: #8E8F94"></div>
-<img src="images/img-24f2.webp" alt="Albyz" style="position: relative; height: 360px; width: auto; display: block">
+<div class="team-bg-b" style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
+<img src="images/albyz.webp" alt="Albyz" style="position: relative; height: 360px; width: auto; display: block">
 </div>
 <div style="padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 6px">
 <h3 style="margin: 0; font-family: 'Cinzel', serif; font-weight: 900; font-size: 26px">Albyz</h3>
@@ -305,7 +431,7 @@ Subscribe on YouTube</a>
 </div>
 </div>
 
-<div data-lang="it" hidden>
+<div data-lang="it" style="display: contents" hidden>
 <div lang="it">
 
 <section style="border-bottom: 1px solid #2E2626">
@@ -375,7 +501,7 @@ Iscriviti su YouTube</a>
 <li>Il tuo nome nei titoli di coda di ogni video</li>
 <li>Sondaggi riservati ai membri</li>
 <li>Risposte prioritarie nei commenti</li>
-<li>Discord riservato ai membri</li>
+<li>Gruppo WhatsApp riservato ai membri</li>
 </ul>
 </div>
 <div style="background: #0A0909; border: 1px solid #2E2626; border-top: 3px solid #C27C3E; border-radius: 4px; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px">
@@ -396,28 +522,20 @@ Iscriviti su YouTube</a>
 <li>Voto sulla prossima armata che trattiamo</li>
 </ul>
 </div>
-<div style="position: relative; background: #120F0E; border: 1px solid #D4AF37; border-top: 3px solid #D4AF37; border-radius: 4px; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px">
-<span style="position: absolute; top: -13px; right: 16px; background: #D4AF37; color: #0A0909; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px">Solo 15 posti rimasti</span>
-<div><h3 style="margin: 0; font-family: 'Cinzel', serif; font-weight: 900; font-size: 27px; color: #D4AF37">Maestro dei Segreti</h3><p style="margin: 4px 0 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 32px; color: #F2EEEA">69,99 $<span style="font-size: 16px; color: #A49C98; font-weight: 600"> /mese · su candidatura</span></p></div>
-<ul style="margin: 0; padding-left: 20px; color: #C9C2BE; font-size: 18px; display: flex; flex-direction: column; gap: 6px">
-<li>Ogni mese 1 ora di coaching in diretta con un membro del Team Italia, <strong style="color: #F2EEEA">Campioni del Mondo a squadre 2024 e 2026</strong></li>
-<li>Gruppo ristretto, massimo 15 Maestri</li>
-<li>Costruzione delle liste, analisi delle partite, preparazione ai tornei: porta le tue domande</li>
-</ul>
-</div>
+
 </div>
 <p style="margin: -20px 0 0; font-size: 14px; color: #A49C98">Prezzi in dollari USA. Su YouTube vedrai l'equivalente nella tua valuta.</p>
 
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
 <a href="https://www.youtube.com/@suntzusecrets/join" target="_blank" rel="noopener" style="text-decoration: none; background: #D42A20; color: #FFFFFF; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 28px; border-radius: 4px; min-height: 50px; box-sizing: border-box; display: inline-flex; align-items: center">Abbonati su YouTube</a>
-<a href="mailto:suntzusecrets@gmail.com?subject=Candidatura%20Maestro%20dei%20Segreti" style="text-decoration: none; border: 1px solid #D4AF37; color: #D4AF37; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 28px; border-radius: 4px; min-height: 50px; box-sizing: border-box; display: inline-flex; align-items: center">Candidati come Maestro</a>
+
 </div>
 </div>
 </section>
 
 <section id="giveaway" style="max-width: 1200px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 48px">
 <div style="flex: 1 1 440px; position: relative">
-<img src="images/img-38fe.webp" alt="L'armata dipinta in palio nel giveaway" style="display: block; width: 100%; height: auto; aspect-ratio: 1600 / 973; object-fit: cover; border-radius: 6px; border: 1px solid #D4AF37">
+<img src="images/giveaway-army.webp" alt="L'armata dipinta in palio nel giveaway" style="display: block; width: 100%; height: auto; aspect-ratio: 1600 / 973; object-fit: cover; border-radius: 6px; border: 1px solid #D4AF37">
 <span style="position: absolute; top: 16px; left: 16px; background: #D42A20; color: #FFFFFF; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 4px">Vinci questa armata</span>
 </div>
 <div style="flex: 1 1 480px; display: flex; flex-direction: column; gap: 18px">
@@ -435,7 +553,7 @@ Iscriviti su YouTube</a>
 <section style="background: #151212; border-top: 1px solid #2E2626; border-bottom: 1px solid #2E2626">
 <div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
 <a href="https://www.workshoplabminiatures.com/" target="_blank" rel="noopener" style="flex: 0 1 340px; background: #FFFFFF; border-radius: 6px; padding: 20px; display: flex; justify-content: center">
-<img src="images/img-896c.webp" alt="WorkShop Lab Miniatures" style="width: 100%; max-width: 300px; height: auto; display: block">
+<img src="images/workshoplab-logo.webp" alt="WorkShop Lab Miniatures" style="width: 100%; max-width: 300px; height: auto; display: block">
 </a>
 <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px">
 <p style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: #D4AF37">Partner ufficiale 2027</p>
@@ -505,9 +623,8 @@ Iscriviti su YouTube</a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px">
 <div style="background: #0A0909; border: 1px solid #2E2626; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
-<div aria-hidden="true" style="position: absolute; left: 50%; bottom: -60px; width: 360px; height: 360px; margin-left: -180px; border-radius: 50%; background: #D42A20"></div>
-<img src="images/img-0b22.webp" alt="Andrea" style="position: relative; height: 360px; width: auto; display: block">
+<div class="team-bg-a" style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
+<img src="images/andrea.webp" alt="Andrea" style="position: relative; height: 360px; width: auto; display: block">
 </div>
 <div style="padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 6px">
 <h3 style="margin: 0; font-family: 'Cinzel', serif; font-weight: 900; font-size: 26px">Andrea</h3>
@@ -515,9 +632,8 @@ Iscriviti su YouTube</a>
 </div>
 </div>
 <div style="background: #0A0909; border: 1px solid #2E2626; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column">
-<div style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
-<div aria-hidden="true" style="position: absolute; left: 50%; bottom: -60px; width: 360px; height: 360px; margin-left: -180px; border-radius: 50%; background: #8E8F94"></div>
-<img src="images/img-24f2.webp" alt="Albyz" style="position: relative; height: 360px; width: auto; display: block">
+<div class="team-bg-b" style="position: relative; height: 380px; display: flex; justify-content: center; align-items: flex-end; overflow: hidden">
+<img src="images/albyz.webp" alt="Albyz" style="position: relative; height: 360px; width: auto; display: block">
 </div>
 <div style="padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 6px">
 <h3 style="margin: 0; font-family: 'Cinzel', serif; font-weight: 900; font-size: 26px">Albyz</h3>
@@ -550,16 +666,17 @@ Iscriviti su YouTube</a>
 </div>
 
 </div>
+
 <script>
 (function(){
   function setLang(l){
     document.querySelectorAll('[data-lang]').forEach(function(el){ el.hidden = el.getAttribute('data-lang') !== l; });
     document.querySelectorAll('[data-set-lang]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === l)); });
     document.documentElement.lang = l;
-    try { localStorage.setItem('stsLang', l); } catch (e) {}
+    try { localStorage.setItem('sts-lang', l); } catch (e) {}
   }
-  var saved = null; try { saved = localStorage.getItem('stsLang'); } catch (e) {}
-  var l = saved || ((navigator.language || '').toLowerCase().indexOf('it') === 0 ? 'it' : 'en');
+  var saved = null; try { saved = localStorage.getItem('sts-lang'); } catch (e) {}
+  var l = (saved === 'en' || saved === 'it') ? saved : ((navigator.language || '').toLowerCase().indexOf('it') === 0 ? 'it' : 'en');
   setLang(l);
   document.querySelectorAll('[data-set-lang]').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang')); }); });
 })();
