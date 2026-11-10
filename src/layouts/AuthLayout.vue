@@ -21,5 +21,5 @@
 import { RouterLink, RouterView } from 'vue-router';
 import LanguageToggle from '@/components/LanguageToggle.vue';
 import { t } from '@/i18n';
-import brandLogo from '@/assets/sun-tzu-secrets-logo.jpg';
+import brandLogo from '@/assets/sun-tzu-secrets-logo.webp';
 </script>

@@ -1951,10 +1951,12 @@ h3 {
 }
 
 .brand-logo {
-  width: 124px;
-  height: 124px;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
   border: 0;
-  box-shadow: 0 0 28px rgba(212, 42, 32, 0.35);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .brand-wordmark {
@@ -2051,7 +2053,7 @@ h3 {
 .topbar-mobile-logo {
   width: 52px;
   height: 52px;
-  border-radius: 50%;
+  object-fit: contain;
   display: block;
 }
 
@@ -2241,7 +2243,7 @@ label > span {
 .auth-topbar-logo {
   width: 52px;
   height: 52px;
-  border-radius: 50%;
+  object-fit: contain;
 }
 
 .auth-form-card {

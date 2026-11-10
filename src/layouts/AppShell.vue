@@ -103,7 +103,7 @@ import { storeToRefs } from 'pinia';
 import LanguageToggle from '@/components/LanguageToggle.vue';
 import { t } from '@/i18n';
 import { useAppStore } from '@/stores/app';
-import brandLogo from '@/assets/sun-tzu-secrets-logo.jpg';
+import brandLogo from '@/assets/sun-tzu-secrets-logo.webp';
 
 const siteUrl = 'https://www.suntzusecrets.com/';
 
